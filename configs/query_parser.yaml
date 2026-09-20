@@ -1,0 +1,34 @@
+# Query Parser Configuration
+# Problem ID: SIH26227 / SH227 - Ministry of Defence
+
+version: "1.0.0"
+pipeline: "part1_semantic_retrieval"
+
+parser_settings:
+  deterministic_mode: true
+  enable_optional_llm: false
+  llm_fallback_on_error: true
+  min_confidence_threshold: 0.65
+
+rules:
+  strip_conversational_verbs:
+    - "find"
+    - "show"
+    - "locate"
+    - "detect"
+    - "identify"
+    - "search for"
+    - "retrieve"
+    - "extract"
+
+  default_temporal_window_days: 365
+  max_spatial_search_buffer_km: 150.0
+
+sensor_defaults:
+  optical: "Sentinel-2"
+  sar: "Sentinel-1"
+  vhr: "Cartosat-3"
+
+validation:
+  strict_temporal_bounds: true
+  require_spatial_confirmation_if_unbounded: true

@@ -1,0 +1,39 @@
+# Retrieval Pipeline Configuration
+# Problem ID: SIH26227 / SH227 - Ministry of Defence
+
+version: "1.0.0"
+execution_target: "satellite_imagery_semantic_retrieval"
+
+# Top-K candidate configuration (Strictly configured, never hardcoded)
+top_k_limits:
+  initial_top_k: 100
+  verification_top_k: 50
+  final_top_k: 10
+
+spatial_clustering:
+  iou_duplicate_threshold: 0.85
+  iou_overlap_threshold: 0.25
+  centroid_distance_km_threshold: 5.0
+  min_similarity_threshold: 0.15
+  max_cluster_radius_km: 25.0
+
+candidate_generation:
+  max_initial_candidates: 10
+  default_tile_resolution_m: 10.0
+  grid_partition_step_km: 5.0
+
+metadata_filtering:
+  max_cloud_cover_percent: 20.0
+  enforce_strict_sensor_match: true
+  min_sun_elevation_deg: 20.0
+
+verifiers:
+  gis_verification_enabled: true
+  context_verification_enabled: true
+  segmentation_verification_enabled: true
+  max_corridor_tolerance_km: 5.0
+
+confidence_thresholds:
+  high_confidence: 0.85
+  medium_confidence: 0.65
+  requires_user_confirmation: 0.50

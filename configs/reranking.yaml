@@ -1,0 +1,46 @@
+# Candidate AOI Multi-Factor Reranking Configuration
+# Problem ID: SIH26227 / SH227 - Ministry of Defence | Theme: Space Technology
+
+version: "2.0.0"
+
+# Multi-Factor Component Weights (Sum to 1.0)
+weights:
+  semantic_similarity: 0.25
+  context_consistency: 0.20
+  structural_segmentation: 0.20
+  gis_deterministic: 0.15
+  quality_metric: 0.08
+  metadata_match: 0.04
+  resolution_suitability: 0.04
+  sensor_suitability: 0.04
+
+# Verification Pass/Fail Thresholds
+thresholds:
+  gis_pass_threshold: 0.50
+  context_pass_threshold: 0.50
+  structural_pass_threshold: 0.50
+  min_acceptable_relevance: 0.20
+
+# Penalties applied to composite score
+penalties:
+  gis_constraint_violated: 0.35
+  context_conflict_detected: 0.30
+  structural_mismatch_detected: 0.25
+  cloud_cover_exceeded: 0.25
+  resolution_unsuitable: 0.20
+
+# Bonuses applied to composite score
+bonuses:
+  all_verifiers_passed: 0.06
+  high_resolution_boost: 0.03
+  temporal_exact_match: 0.02
+
+# Output Specification (Never call score a probability unless calibrated)
+output:
+  score_field_name: "relevance_score"
+  alternative_names:
+    - "ranking_score"
+    - "retrieval_score"
+  max_final_aois: 10
+  sort_order: "descending"
+  generate_explanation: true

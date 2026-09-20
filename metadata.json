@@ -1,0 +1,6 @@
+{
+  "name": "Satellite Semantic Retrieval & Change Analysis",
+  "description": "Part 1 Semantic Retrieval and multi-temporal change analysis system for satellite imagery (SIH26227 / SH227 - Ministry of Defence).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
